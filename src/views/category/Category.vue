@@ -147,10 +147,10 @@
 </script>
 
 <style>
-  .wrapper {
+  /* .wrapper {
     height: 150px;
     background-color: pink;
     overflow: hidden;
-    /* overflow-y: scroll; */
-  }
+    overflow-y: scroll;
+  } */
 </style>

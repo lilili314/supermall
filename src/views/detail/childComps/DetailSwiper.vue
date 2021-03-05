@@ -1,8 +1,8 @@
 <template>
   <div class="swiper-list">
-    <van-swipe :autoplay="4000" indicator-color="#ff0000">
-      <van-swipe-item :key="index" v-for="(item, index) in banners">
-        <img :src="item.image" @load="swiperImageLoad" alt="" />
+    <van-swipe :autoplay="4000" indicator-color="#ff0000" class="swiper">
+      <van-swipe-item :key="index" v-for="(item, index) in topImages">
+        <img :src="item" @load="swiperImageLoad" alt="" />
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -12,7 +12,7 @@
 export default {
   name: "Swiper",
   props: {
-    banners: {
+    topImages: {
       type: Array,
       default() {
         return [];
@@ -52,5 +52,9 @@ export default {
 .swiper-list img {
   display: block;
   width: 100%;
+}
+
+.swiper {
+  height: 300px;
 }
 </style>

@@ -8,8 +8,8 @@
 
 <script>
   import BScroll from 'better-scroll'
-  import ObserveDOM from '@better-scroll/observe-dom'
-  BScroll.use(ObserveDOM)
+  // import ObserveDOM from '@better-scroll/observe-dom'
+  // BScroll.use(ObserveDOM)
 
   export default {
     name: "Scroll",
@@ -39,29 +39,37 @@
       })
 
       // 2.监听滚动的位置
-      this.scroll.on('scroll', (position) => {
-        // console.log(position);
-        this.$emit('scroll', position)
-      })
+      if(this.probeType === 2 || this.probeType === 3) {
+        this.scroll.on('scroll', (position) => {
+          // console.log(position);
+          this.$emit('scroll', position)
+        })
+      }
 
       // 3.监听上拉事件
-      this.scroll.on('pullingUp', () => {
-        this.$emit('pullingUp')
-      })
+      if(this.pullUpLoad) {
+        this.scroll.on('pullingUp', () => {
+          this.$emit('pullingUp')
+        })
+      }
     },
     methods: {
       // 1.封装scrollTo方法
-      scrollTo(x, y, time) {
+      scrollTo(x, y, time = 300 ) {
         this.scroll && this.scroll.scrollTo(x, y, time)
       },
-      // 2.封装finishPullUp方法
+
+      // 2.封装refresh方法
+      refresh() {
+        this.scroll && this.scroll.refresh()
+      },
+      // 3.封装finishPullUp方法
       finishPullUp() {
         this.scroll && this.scroll.finishPullUp()
       },
-      // 3.封装refresh方法
-      refresh() {
-        console.log('-----');
-        this.scroll && this.scroll.refresh()
+      // 4.封装getScrollY方法
+      getScrollY() {
+        return this.scroll ? this.scroll.y : 0
       }
     },
 

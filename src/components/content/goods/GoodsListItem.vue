@@ -1,13 +1,13 @@
 <template>
-  <div class="goods-item">
-    <a :href="goodsItem.link">
-      <img :src="goodsItem.show.img" alt="" :key="showImage" @click="itemImgClick">
-      <div class="goods-info">
-        <p>{{goodsItem.title}}</p>
-        <span class="price">{{goodsItem.price}}</span>
-        <span class="collect">{{goodsItem.cfav}}</span>
-      </div>
-    </a>
+  <div class="goods-item" @click="itemClick">
+    <img :src="goodsItem.show.img" alt=""
+        :key="showImage"
+        @click="itemImgClick">
+    <div class="goods-info">
+      <p>{{goodsItem.title}}</p>
+      <span class="price">{{goodsItem.price}}</span>
+      <span class="collect">{{goodsItem.cfav}}</span>
+    </div>
   </div>
 </template>
 
@@ -29,7 +29,10 @@ export default {
   },
   methods: {
     itemImgClick() {
-      this.$bus.$emit('itemImgLoad')
+      this.bus.$emit('itemImgLoad')
+    },
+    itemClick() {
+      this.$router.push('/detail/' + this.goodsItem.iid)
     }
   }
 }
@@ -63,7 +66,7 @@ export default {
     white-space: nowrap;
     margin-bottom: 3px;
   }
-  
+
   .goods-info .price {
     color: pink;
     margin-right: 20px;
